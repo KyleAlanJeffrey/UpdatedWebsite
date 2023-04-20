@@ -1,0 +1,25 @@
+{
+  "jobs": [
+    {
+      "title": "Python Developer",
+      "description": "Software Engineer on the Impact Lab:",
+      "accomplishments": [
+        "Developed cloud infrastructure to replay a multiple robot service with graphic analysis.",
+        "Improved speed of services by up to 1000% with runtimee analysis of application, using the snakeviz runtime analyzer.",
+        "Developed CLI to run application and bash tmux program to configure environment,improving startup time by at least 300%."
+      ],
+      "company": "Everday Robots @ Google X",
+      "duration": " Nov '21 - Jan '23"
+    },
+    {
+      "title": "Teleoperator Tactician",
+      "description": "As data collection coordinator:",
+      "accomplishments": [
+        "Collected, cleaned data, and conducted evaluations(e.g., biases, limitations) for ml models.",
+        "Developed graphical interface for data collection tasks, improving collection rates by at least 30%."
+      ],
+      "company": "FS Studio @ Google Brain",
+      "duration": "May '21 - Nov '21"
+    }
+  ]
+}

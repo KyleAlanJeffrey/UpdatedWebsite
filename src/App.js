@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import TypeWriterEffect from "react-typewriter-effect";
 import workProjectData from "./work_projects.json";
+import jobsData from "./jobs.json";
 
 import "./App.css";
 function App() {
   const [githubRepos, setGithubRepos] = useState([]);
   const [workProjects, setWorkProjects] = useState(workProjectData["projects"]);
+  const [jobs, setJobs] = useState(jobsData["jobs"]);
   const [hideBody, setHideBody] = useState(true);
   useEffect(() => {
     const url = "https://github.com/Kylealanjeffrey";
@@ -109,6 +111,38 @@ function App() {
             </p>
           </div>
           <p className="spacer"> </p>
+
+          <h2>Work Experience</h2>
+          <ul className="work-list">
+            {jobs.map((job, index) => (
+              <li>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    height: "1.5em",
+                  }}
+                >
+                  <h2>{job.title}</h2>
+                  <span> | </span>
+                  <span style={{ fontSize: "55%", letterSpacing: ".1em" }}>
+                    {job.duration}
+                  </span>
+                </div>
+                <h3>{job.company}</h3>
+                <p>{job.description} </p>
+                <ul style={{ marginLeft: "0" }}>
+                  {job.accomplishments.map((accomplishment, i) => (
+                    <li style={{ fontFamily: "monospace", fontSize: "1em" }}>
+                      {accomplishment}
+                    </li>
+                  ))}
+                </ul>{" "}
+              </li>
+            ))}
+          </ul>
+
           <h2>Work Projects</h2>
           <ul>
             {workProjects.map((project, index) => (
@@ -116,7 +150,7 @@ function App() {
                 <a rel="noreferrer" href={project.url} target="_blank">
                   {project.name}
                 </a>
-                <h2 style={{ fontSize: ".8em" }}>-{project.company}-</h2>
+                <h3 style={{ fontSize: ".8em" }}>{project.company}</h3>
                 <p>{project.description}</p>
                 <div className="topics">
                   <TypeWriterEffect
