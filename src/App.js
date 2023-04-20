@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import TypeWriterEffect from "react-typewriter-effect";
+import workProjectData from "./work_projects.json";
 
 import "./App.css";
 function App() {
   const [githubRepos, setGithubRepos] = useState([]);
+  const [workProjects, setWorkProjects] = useState(workProjectData["projects"]);
   const [hideBody, setHideBody] = useState(true);
   useEffect(() => {
     const url = "https://github.com/Kylealanjeffrey";
     fetch(url);
     const accessToken = process.env.REACT_APP_GITHUB_API_KEY;
+    console.log(accessToken);
     const username = "Kylealanjeffrey";
     // Get pinned repositories
     fetch(`https://api.github.com/users/${username}/repos`, {
@@ -74,14 +77,22 @@ function App() {
             <a
               href="https://www.linkedin.com/in/kyle-jeffrey-1651b5189/"
               target="_blank"
+              rel="noreferrer"
             >
               Linkedin
             </a>
             <span style={{ marginInline: "1em" }}> / </span>
-            <a href="https://github.com/Kylealanjeffrey">Github</a>
+
+            <a
+              href="https://github.com/Kylealanjeffrey"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github
+            </a>
           </div>
           <p className="spacer"> </p>
-          <div className="Bio">
+          <div className="bio">
             <p>Hi I'm Kyle!</p>
             <p>
               I recieved my degree in robotics where I did a Senior Thesis on
@@ -89,25 +100,47 @@ function App() {
             </p>
             <p>
               I've done web development this last five years as a hobbyist where
-              I've made multiple web apps.", "The last two years I've worked
-              across two different divisions at Google using the Meta robot
-              designed by the team at Everyday Robots.
+              I've made multiple web apps.
             </p>
             <p>
-              I was recently let go with many of the Engineers in the recent
-              round of Google Layoffs. I worked at the Google X, Moonshoot
-              Factory writing Machine learning based applications for Ml driven
-              Robotics in python.
+              The last two years I've worked across two different divisions at
+              Google Robotics and Google X, solving general problems with python
+              written robot applications
             </p>
           </div>
           <p className="spacer"> </p>
-          <h2>Projects</h2>
+          <h2>Work Projects</h2>
+          <ul>
+            {workProjects.map((project, index) => (
+              <li key={`project${index}`} title={project.name}>
+                <a rel="noreferrer" href={project.url} target="_blank">
+                  {project.name}
+                </a>
+                <h2 style={{ fontSize: ".8em" }}>-{project.company}-</h2>
+                <p>{project.description}</p>
+                <div className="topics">
+                  <TypeWriterEffect
+                    textStyle={{
+                      lineHeight: "1.5em",
+                      color: "#66ff66",
+                      fontSize: "1em",
+                    }}
+                    startDelay={0}
+                    typeSpeed={100}
+                    text={project.topics.join(" / ")}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="spacer"> </p>
+          <h2>Personal Projects</h2>
           <ul>
             {githubRepos.map((repo, index) => {
               if (repo.pinned) {
                 return (
                   <li key={`repo${index}`} title={repo.name}>
-                    <a href={repo.homepage} target="_blank">
+                    <a rel="noreferrer" href={repo.homepage} target="_blank">
                       {repo.name}
                     </a>
                     <p>{repo.description}</p>

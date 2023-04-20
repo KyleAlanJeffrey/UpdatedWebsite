@@ -48,6 +48,10 @@ h2 {
 .spacer {
   height: 1em;
 }
+.bio {
+  font-family: monospace;
+  font-size: 2em;
+}
 .typed-out {
   overflow: hidden;
   white-space: nowrap;
@@ -55,6 +59,7 @@ h2 {
   animation: typing 4s steps(29, end) 1s 1 normal both;
 }
 ul {
+  list-style-type: "> ";
   padding: 0;
   margin-left: 2em;
 }
@@ -78,8 +83,6 @@ a {
   color: unset;
 }
 li > p {
-  margin-left: 1em;
-  margin-top: 0.5em;
   font-size: 1.2em;
   font-family: monospace;
 }
