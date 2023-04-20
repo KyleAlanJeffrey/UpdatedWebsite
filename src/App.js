@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import workProjectData from "./work_projects.json";
 import jobsData from "./jobs.json";
@@ -54,7 +55,7 @@ function App() {
         />
         <TypeWriterEffect
           startDelay={1500}
-          textStyle={{ fontSize: "1.5em" }}
+          textStyle={{ fontSize: "1.5em", color: "lightblue" }}
           multiText={[
             "Looking for the creative space between tech and art.",
             "Robotics Engineer / Web Developer",
@@ -63,7 +64,12 @@ function App() {
         />
         <TypeWriterEffect
           startDelay={2000}
-          textStyle={{ fontSize: "1em", margin: "1em" }}
+          textStyle={{
+            fontSize: "1em",
+            margin: "1em",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
           text={">---------------------------------------------------"}
           typeSpeed={10}
         />
@@ -79,6 +85,7 @@ function App() {
           >
             <span style={{ marginInline: "1em" }}>Socials: </span>
             <a
+              style={{ color: "#44daff" }}
               href="https://www.linkedin.com/in/kyle-jeffrey-1651b5189/"
               target="_blank"
               rel="noreferrer"
@@ -88,6 +95,7 @@ function App() {
             <span style={{ marginInline: "1em" }}> / </span>
 
             <a
+              style={{ color: "#66ff66" }}
               href="https://github.com/Kylealanjeffrey"
               target="_blank"
               rel="noreferrer"
@@ -95,6 +103,22 @@ function App() {
               Github
             </a>
           </div>
+          <p
+            style={{
+              marginLeft: "1.4em",
+              fontSize: ".9em",
+            }}
+          >
+            email:
+            <span
+              style={{
+                color: "rgb(238, 154, 154)",
+                marginInline: "1em",
+              }}
+            >
+              kyle@kyle-jeffrey.com
+            </span>
+          </p>
           <p className="spacer"> </p>
           <div className="bio">
             <p>Hi I'm Kyle!</p>
@@ -114,10 +138,23 @@ function App() {
           </div>
           <p className="spacer"> </p>
 
-          <h2>Work Experience</h2>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flexWrap: "wrap",
+            }}
+          >
+            <h2 style={{ marginBottom: ".4em", marginRight: "3em" }}>
+              Work Experience
+            </h2>
+            <BitButton url="./Kyle Jeffrey Resume.pdf">
+              Download as PDF
+            </BitButton>
+          </div>
           <ul className="work-list">
             {jobs.map((job, index) => (
-              <li>
+              <li key={`job-${index}`}>
                 <div
                   style={{
                     display: "flex",
@@ -136,7 +173,10 @@ function App() {
                 <p>{job.description} </p>
                 <ul style={{ marginLeft: "0" }}>
                   {job.accomplishments.map((accomplishment, i) => (
-                    <li style={{ fontFamily: "monospace", fontSize: "1em" }}>
+                    <li
+                      key={`${job.name}-${accomplishment}`}
+                      style={{ fontFamily: "monospace", fontSize: "1em" }}
+                    >
                       {accomplishment}
                     </li>
                   ))}
