@@ -13,7 +13,9 @@ function App() {
     const url = "https://github.com/Kylealanjeffrey";
     fetch(url);
     const accessToken = process.env.REACT_APP_GITHUB_API_KEY;
-    console.log(accessToken);
+    if (!accessToken) {
+      console.log("Token not grabbed");
+    }
     const username = "Kylealanjeffrey";
     // Get pinned repositories
     fetch(`https://api.github.com/users/${username}/repos`, {
