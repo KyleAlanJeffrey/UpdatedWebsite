@@ -3,11 +3,12 @@ import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import workProjectData from "./work_projects.json";
 import jobsData from "./jobs.json";
+import "./App.scss";
 
-import "./App.css";
 function App() {
   const [githubRepos, setGithubRepos] = useState([]);
   const [workProjects, setWorkProjects] = useState(workProjectData["projects"]);
+  const [githubError, setGithubError] = useState(false);
   const [jobs, setJobs] = useState(jobsData["jobs"]);
   const [hideBody, setHideBody] = useState(true);
   useEffect(() => {
@@ -19,11 +20,16 @@ function App() {
     }
     const username = "Kylealanjeffrey";
     // Get pinned repositories
-    fetch(`https://api.github.com/users/${username}/repos`, {
+    let promise = fetch(`https://api.github.com/users/${username}/repos`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-    })
+    });
+    promise.catch((error) => {
+      setGithubError(true);
+      console.log(error);
+    });
+    promise
       .then((response) => response.json())
       .then((data) => {
         const allRepos = data.map((repo) => {
@@ -35,7 +41,6 @@ function App() {
           }
           return repo;
         });
-        console.log(allRepos);
         setGithubRepos(allRepos);
       });
     // Set body to display at delay
@@ -212,32 +217,38 @@ function App() {
           <p className="spacer"> </p>
           <h2>Personal Projects</h2>
           <ul>
-            {githubRepos.map((repo, index) => {
-              if (repo.pinned) {
-                return (
-                  <li key={`repo${index}`} title={repo.name}>
-                    <a rel="noreferrer" href={repo.homepage} target="_blank">
-                      {repo.name}
-                    </a>
-                    <p>{repo.description}</p>
-                    <div className="topics">
-                      <TypeWriterEffect
-                        textStyle={{
-                          lineHeight: "1.5em",
-                          color: "#66ff66",
-                          fontSize: "1em",
-                        }}
-                        startDelay={0}
-                        typeSpeed={100}
-                        text={repo.topics.join(" / ")}
-                      />
-                    </div>
-                  </li>
-                );
-              } else {
-                return null;
-              }
-            })}
+            {githubError ? (
+              githubRepos.map((repo, index) => {
+                if (repo.pinned) {
+                  return (
+                    <li key={`repo${index}`} title={repo.name}>
+                      <a rel="noreferrer" href={repo.homepage} target="_blank">
+                        {repo.name}
+                      </a>
+                      <p>{repo.description}</p>
+                      <div className="topics">
+                        <TypeWriterEffect
+                          textStyle={{
+                            lineHeight: "1.5em",
+                            color: "#66ff66",
+                            fontSize: "1em",
+                          }}
+                          startDelay={0}
+                          typeSpeed={100}
+                          text={repo.topics.join(" / ")}
+                        />
+                      </div>
+                    </li>
+                  );
+                } else {
+                  return null;
+                }
+              })
+            ) : (
+              <h3 style={{ color: "red" }}>
+                Oops. There was an issue loading my github projects :(
+              </h3>
+            )}
           </ul>
         </div>
       </header>
