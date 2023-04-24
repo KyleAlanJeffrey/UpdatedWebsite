@@ -185,7 +185,7 @@ function App() {
                       {accomplishment}
                     </li>
                   ))}
-                </ul>{" "}
+                </ul>
               </li>
             ))}
           </ul>
