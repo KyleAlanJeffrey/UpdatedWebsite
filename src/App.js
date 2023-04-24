@@ -20,16 +20,11 @@ function App() {
     }
     const username = "Kylealanjeffrey";
     // Get pinned repositories
-    let promise = fetch(`https://api.github.com/users/${username}/repos`, {
+    fetch(`https://api.github.com/users/${username}/repos`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-    });
-    promise.catch((error) => {
-      setGithubError(true);
-      console.log(error);
-    });
-    promise
+    })
       .then((response) => response.json())
       .then((data) => {
         const allRepos = data.map((repo) => {
@@ -42,7 +37,12 @@ function App() {
           return repo;
         });
         setGithubRepos(allRepos);
+      })
+      .catch((error) => {
+        setGithubError(true);
+        console.log(error);
       });
+
     // Set body to display at delay
     setTimeout(() => {
       setHideBody(false);
@@ -218,6 +218,10 @@ function App() {
           <h2>Personal Projects</h2>
           <ul>
             {githubError ? (
+              <h3 style={{ color: "red" }}>
+                Oops. There was an issue loading my github projects :(
+              </h3>
+            ) : (
               githubRepos.map((repo, index) => {
                 if (repo.pinned) {
                   return (
@@ -244,10 +248,6 @@ function App() {
                   return null;
                 }
               })
-            ) : (
-              <h3 style={{ color: "red" }}>
-                Oops. There was an issue loading my github projects :(
-              </h3>
             )}
           </ul>
         </div>
