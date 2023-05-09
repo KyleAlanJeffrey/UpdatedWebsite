@@ -46,7 +46,7 @@ function App() {
     // Set body to display at delay
     setTimeout(() => {
       setHideBody(false);
-    }, 4000);
+    }, 2000);
   }, []);
 
   return (
@@ -56,7 +56,7 @@ function App() {
           startDelay={0}
           textStyle={{}}
           text={"Kyle Jeffrey"}
-          typeSpeed={100}
+          typeSpeed={50}
         />
         <TypeWriterEffect
           startDelay={1500}
