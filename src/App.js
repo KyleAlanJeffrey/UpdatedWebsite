@@ -46,7 +46,7 @@ function App() {
 
     // Get jobs
     fetch(
-      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/src/data/jobs.json`
+      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/data/jobs.json`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -59,7 +59,7 @@ function App() {
 
     // Get work projects
     fetch(
-      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/src/data/work_projects.json`
+      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/data/work_projects.json`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -71,9 +71,9 @@ function App() {
       });
 
     fetch(
-      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/src/data/bio.txt`
+      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/data/bio.txt`
     )
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
         setBio(data);
       })
@@ -212,6 +212,18 @@ function App() {
                     </li>
                   ))}
                 </ul>
+                <div className="topics">
+                  <TypeWriterEffect
+                    textStyle={{
+                      lineHeight: "1.5em",
+                      color: "#66ff66",
+                      fontSize: "1em",
+                    }}
+                    startDelay={0}
+                    typeSpeed={100}
+                    text={job.skills.join(" / ")}
+                  />
+                </div>
               </li>
             ))}
           </ul>

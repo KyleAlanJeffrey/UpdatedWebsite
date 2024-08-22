@@ -1,8 +1,40 @@
 {
   "jobs": [
     {
+      "title": "Senior Software Engineer",
+      "description": "Robotics Engineer, Full Stack Software Engineer:",
+      "skills": [
+        "Python",
+        "SaltStack",
+        "React",
+        "React Native",
+        "Expo",
+        "FastAPI",
+        "AWS"
+      ],
+      "accomplishments": [
+        "SaltStack for Deploying versioned software stacks.",
+        "OS tooling and infrastructure for linux based IOT devices.",
+        "Dev OPS involving CI/CD on Gitlab.",
+        "React Native and Expo for Cross Platform Mobile App Development.",
+        "React for Web using Redux/React Router/React Query/ Next.js",
+        "Python for Backend API Development using FastAPI. ",
+        "AWS Cloud Management."
+      ],
+      "company": "Everday Robots @ Google X",
+      "duration": " May '23 - Present"
+    },
+    {
       "title": "Python Developer",
       "description": "Software Engineer on the Impact Lab:",
+      "skills": [
+        "Python",
+        "Django",
+        "React",
+        "Postgres",
+        "Docker",
+        "AWS"
+      ],
       "accomplishments": [
         "Developed cloud infrastructure to replay a multiple robot service with graphic analysis.",
         "Improved speed of services by up to 1000% with runtime analysis of application, using the snakeviz runtime analyzer.",
@@ -14,6 +46,7 @@
     {
       "title": "Teleoperator Tactician",
       "description": "As data collection coordinator:",
+      "skills": [],
       "accomplishments": [
         "Collected, cleaned data, and conducted evaluations(e.g., biases, limitations) for ml models.",
         "Developed graphical interface for data collection tasks, improving collection rates by at least 30%."
