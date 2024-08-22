@@ -195,9 +195,11 @@ function App() {
             <h2 style={{ marginBottom: ".4em", marginRight: "3em" }}>
               Work Experience
             </h2>
-            <BitButton url="./Kyle Jeffrey Resume.pdf">
-              Download as PDF
-            </BitButton>
+            <div style={{ marginBottom: "2em" }}>
+              <BitButton url="./Kyle Jeffrey Resume.pdf">
+                Download as PDF
+              </BitButton>
+            </div>
           </div>
           <ul className="work-list">
             {jobs.map((job, index) => (
@@ -207,17 +209,15 @@ function App() {
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
-                    height: "1.5em",
                   }}
                 >
                   <h2>{job.title}</h2>
-                  <span> | </span>
-                  <span style={{ fontSize: "55%", letterSpacing: ".1em" }}>
+                  <div> | </div>
+                  <div style={{ fontSize: "55%", letterSpacing: ".1em" }}>
                     {job.duration}
-                  </span>
+                  </div>
                 </div>
                 <h3>{job.company}</h3>
-                <p>{job.description} </p>
                 <ul style={{ marginLeft: "0" }}>
                   {job.accomplishments.map((accomplishment, i) => (
                     <li
