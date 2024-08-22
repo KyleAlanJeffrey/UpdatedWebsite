@@ -10,7 +10,16 @@
         "React Native",
         "Expo",
         "FastAPI",
-        "AWS"
+        "AWS",
+        "Gitlab",
+        "CI/CD",
+        "Linux",
+        "IOT",
+        "Node.js",
+        "Redux",
+        "Docker",
+        "Postgres",
+        "NestJS"
       ],
       "accomplishments": [
         "SaltStack for Deploying versioned software stacks.",
@@ -29,11 +38,10 @@
       "description": "Software Engineer on the Impact Lab:",
       "skills": [
         "Python",
-        "Django",
-        "React",
-        "Postgres",
-        "Docker",
-        "AWS"
+        "Google 3",
+        "Google Cloud",
+        "Bash",
+        "Linux"
       ],
       "accomplishments": [
         "Developed cloud infrastructure to replay a multiple robot service with graphic analysis.",
@@ -46,7 +54,13 @@
     {
       "title": "Teleoperator Tactician",
       "description": "As data collection coordinator:",
-      "skills": [],
+      "skills": [
+        "Python",
+        "Google 3",
+        "Google Cloud",
+        "Bash",
+        "Linux"
+      ],
       "accomplishments": [
         "Collected, cleaned data, and conducted evaluations(e.g., biases, limitations) for ml models.",
         "Developed graphical interface for data collection tasks, improving collection rates by at least 30%."

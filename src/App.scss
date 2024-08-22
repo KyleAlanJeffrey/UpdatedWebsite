@@ -11,7 +11,18 @@
   src: local("Nintendo2"), url("./fonts/nin_font.ttf");
 }
 
+.flicker {
+  letter-spacing: 0.125em;
+  animation-name: textflicker;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+  animation-duration: 0.01s;
+}
 html {
+  background-color: #111;
+}
+.App {
   background: #111;
   overflow-x: hidden;
   padding: 1em;
@@ -19,9 +30,7 @@ html {
   color: #eee;
   font-size: 2.5vw;
   line-height: 1.2;
-  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
   letter-spacing: 0.125em;
-  animation-duration: 0.01s;
   animation-name: textflicker;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -68,7 +77,38 @@ h2 {
     }
   }
 }
+.flicker-button-container {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  animation: slide-in-top 0.5s ease;
+  transition: left 0.2s ease;
 
+  .flicker-button {
+    font-family: Nintendoid1;
+    color: white;
+    background-color: #111;
+    font-size: 1em;
+    line-height: 1.2;
+    &:hover {
+      cursor: pointer;
+      text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+      animation-duration: 0.1s;
+      animation-name: textflicker;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+  }
+}
+.button-pole {
+  height: 0.27em;
+  border: solid white 1px;
+}
+.item {
+  margin-bottom: 3em;
+}
 .typed-out {
   overflow: hidden;
   white-space: nowrap;
@@ -83,7 +123,6 @@ h2 {
 ul {
   list-style-type: "> ";
   padding: 0;
-  padding-bottom: 1em;
   margin-left: 2em;
 }
 li h2 {
@@ -99,7 +138,8 @@ li {
   position: relative;
   left: 0em;
   font-size: 2em;
-  margin: 1em;
+  margin-left: 1em;
+  margin-bottom: 0.4em;
   animation: slide-in 0.5s ease;
   transition: left 0.2s ease;
 }
@@ -110,7 +150,7 @@ li > .topics {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-size: 0.8em;
+  font-size: 0.6em;
   color: #66ff66;
   color: #44daff;
 }
@@ -124,6 +164,16 @@ a {
 li > p {
   font-size: 1em;
   font-family: monospace;
+}
+@keyframes slide-in-top {
+  0% {
+    opacity: 0;
+    transform: translatey(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
 }
 @keyframes slide-in {
   0% {

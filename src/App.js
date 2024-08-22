@@ -11,6 +11,7 @@ function App() {
   const [jobsError, setJobsError] = useState(false);
   const [workProjectsError, setWorkProjectsError] = useState(false);
   const [bio, setBio] = useState("");
+  const [flickerMode, setFlickerMode] = useState(false);
   const [hideBody, setHideBody] = useState(true);
   useEffect(() => {
     const url = "https://github.com/Kylealanjeffrey";
@@ -87,14 +88,29 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={"App" + (flickerMode ? " flicker" : "")}>
+      <div className="flicker-button-container">
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div className="button-pole"></div>
+          <div className="button-pole"></div>
+          <div className="button-pole"></div>
+        </div>
+        <button
+          onClick={() => setFlickerMode(!flickerMode)}
+          className="flicker-button"
+        >
+          Click me!
+        </button>
+      </div>
       <header className="App-header">
-        <TypeWriterEffect
-          startDelay={0}
-          textStyle={{}}
-          text={"Kyle Jeffrey"}
-          typeSpeed={50}
-        />
+        <div>
+          <TypeWriterEffect
+            startDelay={0}
+            textStyle={{}}
+            text={"Kyle Jeffrey"}
+            typeSpeed={50}
+          />
+        </div>
         <TypeWriterEffect
           startDelay={1500}
           textStyle={{ fontSize: "1.5em", color: "lightblue" }}
@@ -185,7 +201,7 @@ function App() {
           </div>
           <ul className="work-list">
             {jobs.map((job, index) => (
-              <li key={`job-${index}`}>
+              <li className="item" key={`job-${index}`}>
                 <div
                   style={{
                     display: "flex",
@@ -221,7 +237,7 @@ function App() {
                     }}
                     startDelay={0}
                     typeSpeed={100}
-                    text={job.skills.join(" / ")}
+                    text={jobs ? job.skills.join(" / ") : []}
                   />
                 </div>
               </li>
@@ -231,7 +247,7 @@ function App() {
           <h2>Work Projects</h2>
           <ul>
             {workProjects.map((project, index) => (
-              <li key={`project${index}`} title={project.name}>
+              <li className="item" key={`project${index}`} title={project.name}>
                 <a rel="noreferrer" href={project.url} target="_blank">
                   {project.name}
                 </a>
@@ -263,7 +279,7 @@ function App() {
               githubRepos.map((repo, index) => {
                 if (repo.pinned) {
                   return (
-                    <li key={`repo${index}`} title={repo.name}>
+                    <li className="item" key={`repo${index}`} title={repo.name}>
                       <a rel="noreferrer" href={repo.homepage} target="_blank">
                         {repo.name}
                       </a>
