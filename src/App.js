@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import "./App.scss";
+import { getAllCommits } from "./api";
 
 function App() {
   const [githubRepos, setGithubRepos] = useState([]);
   const [workProjects, setWorkProjects] = useState([]);
   const [githubError, setGithubError] = useState(false);
   const [jobs, setJobs] = useState([]);
+  const [commits, setCommits] = useState([]);
   const [jobsError, setJobsError] = useState(false);
   const [workProjectsError, setWorkProjectsError] = useState(false);
   const [bio, setBio] = useState("");
@@ -81,6 +83,11 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
+
+    getAllCommits().then((data) => {
+      setCommits(data);
+    });
+
     // Set body to display at delay
     setTimeout(() => {
       setHideBody(false);
@@ -183,8 +190,25 @@ function App() {
               <p key={`bio-line-${index}`}>{line}</p>
             ))}
           </div>
-          <p className="spacer"> </p>
 
+          <p className="spacer"> </p>
+          <h2>What i'm up to</h2>
+
+          <div className="commit-history-section">
+            {commits.map((commit, index) => (
+              <div className="commit" key={`commit-${index}`}>
+                <p>{commit.commit.message}</p>
+                <a href={commit.html_url}>
+                  sha #{commit.sha.substr(commit.sha.length - 5)}
+                </a>
+                <p>
+                  {new Date(commit.commit.author.date).toLocaleDateString()}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="spacer"> </p>
           <div
             style={{
               display: "flex",

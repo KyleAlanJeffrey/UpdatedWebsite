@@ -88,6 +88,34 @@ h2 {
     }
   }
 }
+.commit-history-section {
+  //  grid 3 columns inf rows
+  width: "100%";
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  padding: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  gap: 10px;
+
+  .commit {
+    flex: 1;
+    padding-inline: 10px;
+    border: solid lightcyan 1px;
+    border-radius: 25px;
+  }
+  .commit > p,
+  a {
+    font-family: monospace;
+    font-size: 14px;
+  }
+}
 .section-container {
   display: flex;
   flex-direction: row;
