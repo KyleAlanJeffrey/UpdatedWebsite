@@ -1,0 +1,4 @@
+Hi I'm Kyle!
+I recieved my degree in robotics where I did a Senior Thesis on simulating Milipede movements with cheap leg actuators.
+I've done web development this last five years as a hobbyist where I've made multiple web apps.
+The last two years I've worked across two different divisions at Google Robotics and Google X, solving general problems with python written robot applications

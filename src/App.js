@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
-import workProjectData from "./work_projects.json";
-import jobsData from "./jobs.json";
 import "./App.scss";
 
 function App() {
   const [githubRepos, setGithubRepos] = useState([]);
-  const [workProjects, setWorkProjects] = useState(workProjectData["projects"]);
+  const [workProjects, setWorkProjects] = useState([]);
   const [githubError, setGithubError] = useState(false);
-  const [jobs, setJobs] = useState(jobsData["jobs"]);
+  const [jobs, setJobs] = useState([]);
+  const [jobsError, setJobsError] = useState(false);
+  const [workProjectsError, setWorkProjectsError] = useState(false);
+  const [bio, setBio] = useState("");
   const [hideBody, setHideBody] = useState(true);
   useEffect(() => {
     const url = "https://github.com/Kylealanjeffrey";
@@ -43,10 +44,46 @@ function App() {
         console.log(error);
       });
 
+    // Get jobs
+    fetch(
+      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/src/data/jobs.json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setJobs(data["jobs"]);
+      })
+      .catch((error) => {
+        setJobsError(true);
+        console.log(error);
+      });
+
+    // Get work projects
+    fetch(
+      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/src/data/work_projects.json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setWorkProjects(data["projects"]);
+      })
+      .catch((error) => {
+        setWorkProjectsError(true);
+        console.log(error);
+      });
+
+    fetch(
+      `https://raw.githubusercontent.com/KyleAlanJeffrey/UpdatedWebsite/main/src/data/bio.txt`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setBio(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     // Set body to display at delay
     setTimeout(() => {
       setHideBody(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   return (
@@ -126,20 +163,9 @@ function App() {
           </p>
           <p className="spacer"> </p>
           <div className="bio">
-            <p>Hi I'm Kyle!</p>
-            <p>
-              I recieved my degree in robotics where I did a Senior Thesis on
-              simulating Milipede movements with cheap leg actuators.
-            </p>
-            <p>
-              I've done web development this last five years as a hobbyist where
-              I've made multiple web apps.
-            </p>
-            <p>
-              The last two years I've worked across two different divisions at
-              Google Robotics and Google X, solving general problems with python
-              written robot applications
-            </p>
+            {bio.split("\n").map((line, index) => (
+              <p key={`bio-line-${index}`}>{line}</p>
+            ))}
           </div>
           <p className="spacer"> </p>
 
