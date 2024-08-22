@@ -113,7 +113,7 @@ function App() {
         </div>
         <TypeWriterEffect
           startDelay={1500}
-          textStyle={{ fontSize: "1.5em", color: "lightblue" }}
+          textStyle={{ fontSize: "25px", color: "lightblue" }}
           multiText={[
             "Looking for the creative space between tech and art.",
             "Robotics Engineer / Web Developer",
@@ -195,82 +195,80 @@ function App() {
             <h2 style={{ marginBottom: ".4em", marginRight: "3em" }}>
               Work Experience
             </h2>
-            <div style={{ marginBottom: "2em" }}>
+            <div style={{ marginBottom: "1em" }}>
               <BitButton url="./Kyle Jeffrey Resume.pdf">
                 Download as PDF
               </BitButton>
             </div>
           </div>
-          <ul className="work-list">
+          <ul className="work-list section-container">
             {jobs.map((job, index) => (
-              <li className="item" key={`job-${index}`}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <h2>{job.title}</h2>
-                  <div> | </div>
-                  <div style={{ fontSize: "55%", letterSpacing: ".1em" }}>
-                    {job.duration}
-                  </div>
-                </div>
+              <div className="item" key={`job-${index}`}>
+                <h2>{job.title}</h2>
                 <h3>{job.company}</h3>
+                <p>{job.duration}</p>
                 <ul style={{ marginLeft: "0" }}>
                   {job.accomplishments.map((accomplishment, i) => (
                     <li
                       key={`${job.name}-${accomplishment}`}
-                      style={{ fontFamily: "monospace", fontSize: "1em" }}
+                      style={{ fontFamily: "monospace", fontSize: "16px" }}
                     >
                       {accomplishment}
                     </li>
                   ))}
                 </ul>
+                <div className="flex-spacer" />
                 <div className="topics">
                   <TypeWriterEffect
                     textStyle={{
-                      lineHeight: "1.5em",
+                      lineHeight: "15px",
                       color: "#66ff66",
-                      fontSize: "1em",
+                      fontSize: "12px",
                     }}
                     startDelay={0}
                     typeSpeed={100}
-                    text={jobs ? job.skills.join(" / ") : []}
+                    text={jobs ? job.skills.join("  ") : []}
                   />
                 </div>
-              </li>
+              </div>
             ))}
           </ul>
 
+          <p className="spacer"> </p>
           <h2>Work Projects</h2>
-          <ul>
+          <div className="section-container work-list">
             {workProjects.map((project, index) => (
-              <li className="item" key={`project${index}`} title={project.name}>
+              <div
+                className="item"
+                key={`project${index}`}
+                title={project.name}
+              >
                 <a rel="noreferrer" href={project.url} target="_blank">
                   {project.name}
                 </a>
                 <h3 style={{ fontSize: ".8em" }}>{project.company}</h3>
                 <p>{project.description}</p>
+                <div className="flex-spacer" />
+
                 <div className="topics">
                   <TypeWriterEffect
                     textStyle={{
-                      lineHeight: "1.5em",
+                      lineHeight: "15px",
                       color: "#66ff66",
-                      fontSize: "1em",
+                      fontSize: "12px",
                     }}
                     startDelay={0}
                     typeSpeed={100}
-                    text={project.topics.join(" / ")}
+                    text={project.topics.join("   ")}
                   />
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
+
           <p className="spacer"> </p>
           <h2>Personal Projects</h2>
-          <ul>
+          <div className="section-container work-list">
             {githubError ? (
               <h3 style={{ color: "red" }}>
                 Oops. There was an issue loading my github projects :(
@@ -279,31 +277,36 @@ function App() {
               githubRepos.map((repo, index) => {
                 if (repo.pinned) {
                   return (
-                    <li className="item" key={`repo${index}`} title={repo.name}>
+                    <div
+                      className="item"
+                      key={`repo${index}`}
+                      title={repo.name}
+                    >
                       <a rel="noreferrer" href={repo.homepage} target="_blank">
                         {repo.name}
                       </a>
                       <p>{repo.description}</p>
+                      <div className="flex-spacer" />
                       <div className="topics">
                         <TypeWriterEffect
                           textStyle={{
-                            lineHeight: "1.5em",
+                            lineHeight: "15px",
                             color: "#66ff66",
-                            fontSize: "1em",
+                            fontSize: "12px",
                           }}
                           startDelay={0}
                           typeSpeed={100}
-                          text={repo.topics.join(" / ")}
+                          text={repo.topics.join("   ")}
                         />
                       </div>
-                    </li>
+                    </div>
                   );
                 } else {
                   return null;
                 }
               })
             )}
-          </ul>
+          </div>
         </div>
       </header>
     </div>

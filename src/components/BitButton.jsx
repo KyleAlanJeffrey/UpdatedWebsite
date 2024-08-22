@@ -8,7 +8,7 @@ export default function BitButton(props) {
     <button
       value="download"
       className="bitbutton"
-      style={{ fontSize: "1.5em" }}
+      style={{ fontSize: "1em" }}
       onClick={downloadFile}
     >
       {props.children}
