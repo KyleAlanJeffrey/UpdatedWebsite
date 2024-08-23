@@ -1,6 +1,23 @@
 {
   "projects": [
     {
+      "name": "Project Starling",
+      "company": "Everyday Robots @ Google X",
+      "description": "A project I worked on at Google Robotics, with Catie Cuan, to create dynamic movement with large groups of robots.",
+      "url": "https://www.youtube.com/watch?v=UI6IKlHh-pQ",
+      "topics": [
+        "Python",
+        "Bash",
+        "Linux",
+        "Blaze Build System",
+        "Google Cloud Platform",
+        "Robotics",
+        "Machine Learning",
+        "Computer Vision",
+        "Deep Learning"
+      ]
+    },
+    {
       "name": "Project Music Mode",
       "company": "Everyday Robots @ Google X",
       "description": "A project I worked on at Everyday Robots. Python and Java programming used to create dynamic music on robot based arm velocities. Also created scripts to recreate music played live by robot from debug logs.",
@@ -30,3 +47,4 @@
     }
   ]
 }
+// 
