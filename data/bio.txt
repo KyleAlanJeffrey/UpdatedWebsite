@@ -1,6 +1,5 @@
 Hi I'm Kyle!
-I recieved my degree in robotics where I did a Senior Thesis on simulating Milipede movements with cheap leg actuators.
-I've done web development this last five years as a hobbyist where I've made multiple web apps.
-Prior to my current position I worked across two different divisions at Google Robotics and Google X, solving general problems with python written robot applications
-My previous boss gave a ted talk on one of our projects (See Music Mode in Work Projects)
-The last year and a half, I've been at Stout Industrial helping Farmers with autonomous weeders powered by AI vision.
+I recieved my degree in robotics where I did a Senior Thesis on simulating Milipede movements with cheap leg actuators (See Projects Below).
+For 3 years I worked throughout Googles robotics departments, getting robots to pickup kitchens (see Project Saycan), dance (see Project Starling), and make music (See Project Music Mode).
+After leaving Google, I've been working at Stout Industrial Technology, empowering Farmers with plant level data on their fields and improving their yield with our autonomous smart cultivator what uses AI vision to detect weeds in the field.
+In my free time I program odds and ends for fun.
