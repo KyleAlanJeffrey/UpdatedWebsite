@@ -111,9 +111,6 @@ function App() {
         >
           Click me!
         </button>
-        <div className="score-container">
-          <h3>Score: {commits.length}</h3>
-        </div>
       </div>
       <div className="App-header">
         <div>
@@ -331,11 +328,11 @@ function App() {
             </div>
             <div className="score-span">
               <span className="title">Most Consecutive Days:</span>
-              <span> {findLongestStreak(commits)} days</span>
+              <span> {findLongestStreak(commits)}</span>
             </div>
             <div className="score-span">
               <span className="title">Current Streak:</span>
-              <span> {findCurrentStreak(commits)} days</span>
+              <span> {findCurrentStreak(commits)}</span>
             </div>
             <div className="score-span">
               <span className="title">Last Commit:</span>
