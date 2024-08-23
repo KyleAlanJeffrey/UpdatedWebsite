@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import "./App.scss";
+
 import { getAllCommits } from "./api";
+import { Avatar } from "./components/Avatar";
+import { findCurrentStreak, findLongestStreak } from "./helper";
 
 function App() {
   const [githubRepos, setGithubRepos] = useState([]);
@@ -108,8 +111,11 @@ function App() {
         >
           Click me!
         </button>
+        <div className="score-container">
+          <h3>Score: {commits.length}</h3>
+        </div>
       </div>
-      <header className="App-header">
+      <div className="App-header">
         <div>
           <TypeWriterEffect
             startDelay={0}
@@ -142,7 +148,7 @@ function App() {
           <div
             style={{
               justifyContent: "left",
-              fontSize: "1.2em",
+              fontSize: "16px",
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
@@ -171,7 +177,7 @@ function App() {
           <p
             style={{
               marginLeft: "1.4em",
-              fontSize: ".9em",
+              fontSize: "14px",
             }}
           >
             email:
@@ -188,23 +194,6 @@ function App() {
           <div className="bio">
             {bio.split("\n").map((line, index) => (
               <p key={`bio-line-${index}`}>{line}</p>
-            ))}
-          </div>
-
-          <p className="spacer"> </p>
-          <h2>What i'm up to</h2>
-
-          <div className="commit-history-section">
-            {commits.map((commit, index) => (
-              <div className="commit" key={`commit-${index}`}>
-                <p>{commit.commit.message}</p>
-                <a href={commit.html_url}>
-                  sha #{commit.sha.substr(commit.sha.length - 5)}
-                </a>
-                <p>
-                  {new Date(commit.commit.author.date).toLocaleDateString()}
-                </p>
-              </div>
             ))}
           </div>
 
@@ -331,8 +320,42 @@ function App() {
               })
             )}
           </div>
+          <p className="spacer"> </p>
+          <h2>What i'm up to</h2>
+          <h3 style={{ color: "lightblue" }}>Commit History</h3>
+          <div className="commit-score">
+            <h4>Score: </h4>
+            <h4>Total Commits: {commits.length}</h4>
+            <h4>Most Consecutive Days: {findLongestStreak(commits)} days</h4>
+            <h4>Current Streak: {findCurrentStreak(commits)} days</h4>
+          </div>
+          <div className="commit-history-section">
+            {commits.map((commit, index) => (
+              <div className="commit" key={`commit-${index}`}>
+                <p>{commit.commit.message}</p>
+                <a href={commit.html_url}>
+                  commit sha: #{commit.sha.substr(commit.sha.length - 5)}
+                </a>
+                <div className="footer">
+                  <div className="user">
+                    {commit.author?.avatar_url ? (
+                      <img src={commit?.author?.avatar_url} />
+                    ) : (
+                      <Avatar />
+                    )}
+                    <a href={commit?.author?.html_url}>
+                      {commit?.commit?.author?.name}
+                    </a>
+                  </div>
+                  <p>
+                    {new Date(commit.commit.author.date).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </header>
+      </div>
     </div>
   );
 }

@@ -88,6 +88,9 @@ h2 {
     }
   }
 }
+.commit-score {
+  color: #23ff0f;
+}
 .commit-history-section {
   //  grid 3 columns inf rows
   width: "100%";
@@ -101,19 +104,48 @@ h2 {
   max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
-
   gap: 10px;
+
+  // Cool border
+  border: solid lightcyan 1px;
+  border-radius: 25px;
 
   .commit {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     padding-inline: 10px;
     border: solid lightcyan 1px;
     border-radius: 25px;
-  }
-  .commit > p,
-  a {
-    font-family: monospace;
-    font-size: 14px;
+    .footer {
+      padding-block: 10px;
+      display: flex;
+      justify-content: space-between;
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+        }
+      }
+      & > p {
+        font-size: 14px;
+        font-family: monospace;
+      }
+      & > a {
+        font-size: 14px;
+        font-family: monospace;
+        color: #44daff;
+      }
+    }
+    & > p,
+    a {
+      font-family: monospace;
+      font-size: 14px;
+    }
   }
 }
 .section-container {
