@@ -324,10 +324,28 @@ function App() {
           <h2>What i'm up to</h2>
           <h3 style={{ color: "lightblue" }}>Commit History</h3>
           <div className="commit-score">
-            <h4>Score: </h4>
-            <h4>Total Commits: {commits.length}</h4>
-            <h4>Most Consecutive Days: {findLongestStreak(commits)} days</h4>
-            <h4>Current Streak: {findCurrentStreak(commits)} days</h4>
+            <h4 className="title">Score: </h4>
+            <div className="score-span">
+              <span className="title">Total Commits:</span>
+              <span> {commits.length}</span>
+            </div>
+            <div className="score-span">
+              <span className="title">Most Consecutive Days:</span>
+              <span> {findLongestStreak(commits)} days</span>
+            </div>
+            <div className="score-span">
+              <span className="title">Current Streak:</span>
+              <span> {findCurrentStreak(commits)} days</span>
+            </div>
+            <div className="score-span">
+              <span className="title">Last Commit:</span>
+              <span>
+                {" "}
+                {new Date(
+                  commits?.[0]?.commit.author.date
+                ).toLocaleDateString()}
+              </span>
+            </div>
           </div>
           <div className="commit-history-section">
             {commits.map((commit, index) => (

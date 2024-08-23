@@ -89,7 +89,28 @@ h2 {
   }
 }
 .commit-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   color: #23ff0f;
+  font-size: 15px;
+  padding-bottom: 12px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .title {
+    margin: unset;
+  }
+  .score-span {
+    padding-inline: 10px;
+    .title {
+      color: white;
+    }
+  }
 }
 .commit-history-section {
   //  grid 3 columns inf rows
@@ -117,10 +138,14 @@ h2 {
     padding-inline: 10px;
     border: solid lightcyan 1px;
     border-radius: 25px;
+    overflow: hidden;
     .footer {
       padding-block: 10px;
       display: flex;
       justify-content: space-between;
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
       .user {
         display: flex;
         align-items: center;
