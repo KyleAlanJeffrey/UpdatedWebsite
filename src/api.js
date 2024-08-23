@@ -8,14 +8,14 @@ const myGithubUsernames = [
   "business kyle",
 ];
 
-export async function getRepos() {
+export async function getAllRepos() {
   if (!accessToken) {
     console.error("No GitHub access token found.");
     return;
   }
   try {
     const response = await fetch(
-      `https://api.github.com/users/${username}/repos`,
+      `https://api.github.com/users/${username}/repos?per_page=200`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -31,7 +31,7 @@ export async function getRepos() {
 }
 export async function getAllCommits() {
   let all_commits = [];
-  const repos = await getRepos();
+  const repos = await getAllRepos();
 
   console.log(`found ${repos.length} repos`);
   // Get all commits for each repo

@@ -3,7 +3,7 @@ import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import "./App.scss";
 
-import { getAllCommits } from "./api";
+import { getAllCommits, getAllRepos } from "./api";
 import { Avatar } from "./components/Avatar";
 import { findCurrentStreak, findLongestStreak } from "./helper";
 
@@ -25,30 +25,19 @@ function App() {
     if (!accessToken) {
       console.log("Token not grabbed");
     }
-    const username = "Kylealanjeffrey";
     // Get pinned repositories
-    fetch(`https://api.github.com/users/${username}/repos`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const allRepos = data.map((repo) => {
-          repo.pinned = false;
-          let i = repo.topics.indexOf("pinned");
-          if (i > -1) {
-            repo.topics.splice(i, 1);
-            repo.pinned = true;
-          }
-          return repo;
-        });
-        setGithubRepos(allRepos);
-      })
-      .catch((error) => {
-        setGithubError(true);
-        console.log(error);
+    getAllRepos().then((data) => {
+      const allRepos = data.map((repo) => {
+        repo.pinned = false;
+        let i = repo.topics.indexOf("pinned");
+        if (i > -1) {
+          repo.topics.splice(i, 1);
+          repo.pinned = true;
+        }
+        return repo;
       });
+      setGithubRepos(allRepos);
+    });
 
     // Get jobs
     fetch(

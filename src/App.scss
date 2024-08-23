@@ -10,14 +10,6 @@
   font-family: "Nintendo2";
   src: local("Nintendo2"), url("./fonts/nin_font.ttf");
 }
-
-.flicker {
-  animation-name: textflicker;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
-  animation-duration: 0.01s;
-}
 html {
   background-color: #111;
 }
@@ -30,6 +22,13 @@ html {
   animation-name: textflicker;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+.flicker {
+  animation-name: textflicker;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+  animation-duration: 0.01s;
 }
 h1 {
   font-size: 45px;
@@ -90,11 +89,13 @@ h2 {
 }
 .commit-score {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   color: #23ff0f;
-  font-size: 15px;
-  padding-bottom: 12px;
+  font-size: 12px;
+  padding: 12px;
+  border-top: solid lightcyan 1px;
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -174,12 +175,12 @@ h2 {
   }
 }
 .section-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 10px;
-  // margin-top: 1em;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  } // margin-top: 1em;
 }
 .button-pole {
   height: 0.27em;
@@ -233,8 +234,6 @@ h2 {
   white-space: nowrap;
   width: 0;
   animation: typing 4s steps(29, end) 1s 1 normal both;
-}
-.work-list {
 }
 ul {
   list-style-type: "> ";
