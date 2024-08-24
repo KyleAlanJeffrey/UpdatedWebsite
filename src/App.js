@@ -281,21 +281,30 @@ function App() {
                       key={`repo${index}`}
                       title={repo.name}
                     >
-                      <a rel="noreferrer" href={repo.homepage} target="_blank">
-                        {repo.name}
-                      </a>
+                      <div className="header">
+                        <a
+                          rel="noreferrer"
+                          href={repo.homepage}
+                          target="_blank"
+                        >
+                          {repo.name}
+                        </a>
+                        {repo.topics.includes("website") && (
+                          <span>Live Website!</span>
+                        )}
+                      </div>
                       <p>{repo.description}</p>
                       <div className="flex-spacer" />
                       <div className="topics">
                         <TypeWriterEffect
                           textStyle={{
-                            lineHeight: "15px",
+                            lineHeight: "16px",
                             color: "#66ff66",
                             fontSize: "12px",
                           }}
                           startDelay={0}
                           typeSpeed={100}
-                          text={repo.topics.join("   ")}
+                          text={repo.topics.join(" / ")}
                         />
                       </div>
                     </div>

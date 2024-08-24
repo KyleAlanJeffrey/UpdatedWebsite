@@ -13,6 +13,7 @@
 html {
   background-color: #111;
 }
+
 .App {
   background: #111;
   overflow-x: hidden;
@@ -187,6 +188,7 @@ h2 {
   border: solid white 1px;
 }
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -195,11 +197,21 @@ h2 {
   border: solid white 1px;
   border-radius: 25px;
   flex: 1 1 20%;
-
+  overflow: hidden;
   @media screen and (max-width: 768px) {
     flex: 1 1 100%;
   }
-  // flex-basis: "50%";
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    span {
+      font-size: 12px;
+      color: lightblue;
+    }
+  }
   & > p {
     font-size: 14px;
     font-family: monospace;
