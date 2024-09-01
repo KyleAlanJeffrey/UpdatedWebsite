@@ -3,7 +3,7 @@ import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import "./App.scss";
 
-import { getAllCommits, getAllRepos } from "./api";
+import { getAllCommits, getAllRepos, getDailyThoughts } from "./api";
 import { Avatar } from "./components/Avatar";
 import { findCurrentStreak, findLongestStreak } from "./helper";
 
@@ -13,6 +13,7 @@ function App() {
   const [githubError, setGithubError] = useState(false);
   const [jobs, setJobs] = useState([]);
   const [commits, setCommits] = useState([]);
+  const [dailyThoughts, setDailyThoughts] = useState([]);
   const [jobsError, setJobsError] = useState(false);
   const [workProjectsError, setWorkProjectsError] = useState(false);
   const [bio, setBio] = useState("");
@@ -78,6 +79,10 @@ function App() {
 
     getAllCommits().then((data) => {
       setCommits(data);
+    });
+
+    getDailyThoughts().then((data) => {
+      setDailyThoughts(data);
     });
 
     // Set body to display at delay
@@ -342,9 +347,9 @@ function App() {
               </span>
             </div>
           </div>
-          <div className="commit-history-section">
+          <div className="grided-section">
             {commits.map((commit, index) => (
-              <div className="commit" key={`commit-${index}`}>
+              <div className="content" key={`commit-${index}`}>
                 <p>{commit.commit.message}</p>
                 <a href={commit.html_url}>
                   commit sha: #{commit.sha.substr(commit.sha.length - 5)}
@@ -364,6 +369,17 @@ function App() {
                     {new Date(commit.commit.author.date).toLocaleDateString()}
                   </p>
                 </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="spacer"> </p>
+          <h3 style={{ color: "lightblue" }}>Daily Blog {'<Encrypted>'}</h3>
+          <div className="grided-section">
+            {dailyThoughts.map((dailyData, index) => (
+              <div className="content" key={`thought-${index}`}>
+                <p>{dailyData["date"]}</p>
+                <p>{dailyData["body"]}</p>
               </div>
             ))}
           </div>

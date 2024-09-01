@@ -114,7 +114,8 @@ h2 {
     }
   }
 }
-.commit-history-section {
+
+.grided-section {
   //  grid 3 columns inf rows
   width: "100%";
   display: grid;
@@ -133,7 +134,7 @@ h2 {
   border: solid lightcyan 1px;
   border-radius: 25px;
 
-  .commit {
+  .content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -175,6 +176,36 @@ h2 {
     }
   }
 }
+.daily-thoughts-section {
+  //  grid 3 columns inf rows
+  width: "100%";
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  padding: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  gap: 10px;
+
+  // Cool border
+  border: solid lightcyan 1px;
+  border-radius: 25px;
+
+  .commit {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 10px;
+    border: solid lightcyan 1px;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+}
+  
 .section-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));

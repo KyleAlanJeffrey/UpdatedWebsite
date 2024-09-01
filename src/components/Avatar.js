@@ -3,7 +3,6 @@ export function Avatar(props) {
     <svg
       aria-hidden="true"
       focusable="false"
-      class="octicon octicon-mark-github"
       viewBox="0 0 24 24"
       width="32"
       height="32"

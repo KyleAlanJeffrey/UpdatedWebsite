@@ -6,6 +6,7 @@ const myGithubUsernames = [
   "alphabeard",
   "kjeffery",
   "business kyle",
+  "kylejeffrey",
 ];
 
 export async function getAllRepos() {
@@ -76,4 +77,29 @@ export async function getWatchedYoutubeVideos() {
   );
   const data = await response.json();
   return data.items;
+}
+
+export async function getDailyThoughts() {
+  // Fetch metadata list from github
+  // https://github.com/KyleAlanJeffrey/daily-haiku/blob/main/daily-response/metadata.txt
+  const url = "https://raw.githubusercontent.com/KyleAlanJeffrey/daily-haiku/main/daily-response/metadata.txt";
+  const response = await fetch(url);
+  // Next line separated list of files
+  let entries = await response.text();
+  entries = entries.split("\n").filter((entry) => entry.length > 0);
+  // For each entry, fetch the file
+  const responses = await Promise.all(entries.map(async (entry) => {
+    try {
+      const url = `https://raw.githubusercontent.com/KyleAlanJeffrey/daily-haiku/main/daily-response/${entry}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      return data["entries"];
+    } catch (e) {
+      console.error(`Error fetching daily thought ${entry}: ${e}`);
+      return [];
+    }
+  }
+  ));
+  // Flatten the list of lists
+  return responses.flat();
 }
