@@ -100,6 +100,9 @@ export async function getDailyThoughts() {
     }
   }
   ));
-  // Flatten the list of lists
-  return responses.flat();
+  // Flatten the list of lists sorrted by date
+  const flattened = responses.flat().sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+  return flattened;
 }
