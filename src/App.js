@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import BitButton from "./components/BitButton";
 import TypeWriterEffect from "react-typewriter-effect";
 import "./App.scss";
+import BitButton from "./components/BitButton";
 
 import { getAllCommits, getAllRepos, getDailyThoughts } from "./api";
 import { Avatar } from "./components/Avatar";
@@ -372,7 +372,7 @@ function App() {
               </div>
             ))}
           </div>
-
+          {/* 
           <p className="spacer"> </p>
           <h3 style={{ color: "lightblue" }}>Daily Blog {'<Encrypted>'}</h3>
           <div className="grided-section">
@@ -382,7 +382,7 @@ function App() {
                 <p>{dailyData["body"]}</p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
